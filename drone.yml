@@ -15,6 +15,6 @@ steps:
       dockerfile: Dockerfile
       tags: 1.2
     privileged: true
-    -name : kubernetes
+    -name : kubetest
       image: vallard/drone-kube
       template: droneex-k8.yaml
