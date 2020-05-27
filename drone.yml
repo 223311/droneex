@@ -7,6 +7,7 @@ steps:
     image: sankar31/baseimg:1.0
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - systemctl start docker
       - docker build --tag sankar31/droneex:1.0 .
       - docker login -u sankar31 -p 123sinku
       - docker push sankar31/droneex:1.0
