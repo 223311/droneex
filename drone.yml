@@ -18,3 +18,4 @@ steps:
   - name : kubetest
     image: vallard/drone-kube
     template: droneex-k8.yaml
+    server : https://046D124070CC5E1C5698E3BF04403DB5.gr7.us-east-1.eks.amazonaws.com
