@@ -7,11 +7,11 @@ steps:
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - name : buildimage
-    image: docker
+    image: plugins/docker
+    settings:
+      username: sankar31
+      password: 123sinku
+      repo: sankar31/baseimg
+      dockerfile: Dockerfile
+      tags: 1.1
     privileged: true
-    commands:
-      - service docker start
-      - service docker status
-      - docker login -u sankar31 -p 123sinku
-      - docker build --tag sankar31/droneex:1.0 .
-      - docker push sankar31/droneex:1.0
