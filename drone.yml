@@ -8,6 +8,7 @@ steps:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - name : buildimage
     image: docker
+    commands:
       - docker login -u sankar31 -p 123sinku
       - docker build --tag sankar31/droneex:1.0 .
       - docker push sankar31/droneex:1.0
