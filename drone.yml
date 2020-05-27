@@ -6,11 +6,13 @@ steps:
     image: sankar31/baseimg:1.0
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-      - mvn jib:build
+      - mvn docker:build
   - name : buildimage
     image: docker
     privileged: true
     commands:
+      - service docker start 
+      - service docker status
       - docker login -u sankar31 -p 123sinku
       - docker build --tag sankar31/droneex:1.0 .
       - docker push sankar31/droneex:1.0
