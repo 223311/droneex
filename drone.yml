@@ -11,7 +11,7 @@ steps:
     settings:
       username: sankar31
       password: 123sinku
-      repo: sankar31/baseimg
+      repo: sankar31/droneex
       dockerfile: Dockerfile
       tags: 1.1
     privileged: true
