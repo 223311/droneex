@@ -15,6 +15,6 @@ steps:
       repo: sankar31/droneex
       dockerfile: Dockerfile
       tags: 1.2
-  -name : kubetest
+  - name : kubetest
     image: vallard/drone-kube
     template: droneex-k8.yaml
