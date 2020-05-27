@@ -8,13 +8,13 @@ steps:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - name : buildimage
     image: plugins/docker
+    privileged: true
     settings:
       username: sankar31
       password: 123sinku
       repo: sankar31/droneex
       dockerfile: Dockerfile
       tags: 1.2
-    privileged: true
   -name : kubetest
     image: vallard/drone-kube
     template: droneex-k8.yaml
