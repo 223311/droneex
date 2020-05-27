@@ -6,6 +6,7 @@ steps:
     image: sankar31/baseimg:1.0
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+      - mvn docker:build
   - name : buildimage
     image: docker
     privileged: true
