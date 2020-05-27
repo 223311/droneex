@@ -38,9 +38,16 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>1.6.1</version>
                 <configuration>
+                    <from>
+                        <image>openjdk:8u252</image>
+                    </from>
                     <to>
-                        <image>sankar31/droneex:${project.version}</image>
+                        <image>sankar31/droneex:1.0</image>
                     </to>
+                    <container>
+                        <workingDirectory>/opt</workingDirectory>
+                        <mainClass>io.skr.app.droneex.DroneexApplication</mainClass>
+                    </container>
                 </configuration>
             </plugin>
         </plugins>
