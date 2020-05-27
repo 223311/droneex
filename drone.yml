@@ -13,5 +13,8 @@ steps:
       password: 123sinku
       repo: sankar31/droneex
       dockerfile: Dockerfile
-      tags: 1.1
+      tags: 1.2
     privileged: true
+    -name : kubernetes
+      image: vallard/drone-kube
+      template: droneex-k8.yaml
