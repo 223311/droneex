@@ -18,6 +18,6 @@ public class DroneexApplication {
 class HelloController{
 	@GetMapping("/hello")
 	public String sayHello(){
-		return "Hello Guest!!!";
+		return "Hello Guest!!! v1";
 	}
 }
