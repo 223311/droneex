@@ -34,7 +34,7 @@ metadata:
     name: droneex-service
 spec:
   ports:
-    - port: 9090
+    - port: 2093
       targetPort: 8080
       protocol: TCP
       name: droneport
