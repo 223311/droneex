@@ -15,7 +15,7 @@ steps:
       password: 123sinku
       repo: sankar31/droneex
       dockerfile: Dockerfile
-      tags: 1.4
+      tags: 1.3
   - name : deploy
     image: sinlead/drone-kubectl
     settings:
@@ -25,5 +25,5 @@ steps:
         from_secret: k8s_cert
       kubernetes_token:
         from_secret: k8s_token
-      commands:
-        - kubectl apply -f droneex-k8.yaml
+    commands:
+        - kubectl create -f droneex-k8.yaml
