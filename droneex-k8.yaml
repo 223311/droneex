@@ -1,4 +1,4 @@
-apiVersion: apps/v1
+apiVersion: apps/v1beta2
 kind: Deployment
 metadata:
   name: droneex
@@ -15,7 +15,9 @@ spec:
           ports:
             - containerPort: 8080
   selector:
-        
+    matchLabels:
+      app: droneex
+
 
 ---
 apiVersion: v1
