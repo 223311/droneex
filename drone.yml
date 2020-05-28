@@ -1,6 +1,7 @@
 kind: pipeline
 type: kubernetes
 name: default
+
 steps:
   - name: build
     image: sankar31/baseimg:1.0
@@ -15,7 +16,7 @@ steps:
       password: 123sinku
       repo: sankar31/droneex
       dockerfile: Dockerfile
-      tags: 1.3
+      tags: 1.4
   - name : deploy
     image: sinlead/drone-kubectl
     settings:
