@@ -7,6 +7,7 @@ steps:
     image: sankar31/baseimg:1.0
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
+  
   - name : buildimage
     image: plugins/docker
     use_cache: true
@@ -16,7 +17,7 @@ steps:
       password: 123sinku
       repo: sankar31/droneex
       dockerfile: Dockerfile
-      tags: ${project.version}
+      tags: latest
   - name : deploy
     image: sinlead/drone-kubectl
     settings:
