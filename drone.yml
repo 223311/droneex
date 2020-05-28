@@ -15,7 +15,7 @@ steps:
       password: 123sinku
       repo: sankar31/droneex
       dockerfile: Dockerfile
-      tags: 1.4
+      tags: ${project.version}
   - name : deploy
     image: sinlead/drone-kubectl
     settings:
