@@ -12,6 +12,7 @@ spec:
       containers:
         - name: droneex
           image: 'sankar31/droneex:1.4'
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
   selector:
@@ -28,7 +29,7 @@ metadata:
     name: droneex-service
 spec:
   ports:
-    - port: 9090
+    - port: 80
       targetPort: 8080
       protocol: TCP
       name: droneport
