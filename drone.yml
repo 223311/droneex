@@ -26,4 +26,4 @@ steps:
       kubernetes_token:
         from_secret: k8s_token
       commands:
-        - kubectl create -f droneex-k8.yaml
+        - kubectl apply -f droneex-k8.yaml
