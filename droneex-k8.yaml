@@ -11,7 +11,7 @@ spec:
     spec:
       containers:
         - name: droneex
-          image: 'sankar31/droneex:1.3'
+          image: 'sankar31/droneex:1.4'
           ports:
             - containerPort: 8080
 
