@@ -3,9 +3,12 @@ kind: Deployment
 metadata:
   name: droneex
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
-    type: Recreate
+    type: RollingUpdate
+    rollingUpdate:
+      maxUnavailable: 1
+      maxSurge: 1
   template:
     metadata:
       labels:
@@ -14,7 +17,7 @@ spec:
       containers:
         - name: droneex
           image: sankar31/droneex:2.1
-          imagePullPolicy: "Always"
+          imagePullPolicy: Always
           ports:
             - containerPort: 8080
   selector:
