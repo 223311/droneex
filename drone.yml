@@ -8,14 +8,23 @@ steps:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - name : buildimage
     image: plugins/docker
+    use_cache: true
     privileged: true
     settings:
       username: sankar31
       password: 123sinku
       repo: sankar31/droneex
       dockerfile: Dockerfile
-      tags: 1.2
-  - name : kubetest
-    image: vallard/drone-kube
-    template: droneex-k8.yaml
-    server : https://046D124070CC5E1C5698E3BF04403DB5.gr7.us-east-1.eks.amazonaws.com
+      tags: 1.3
+step:
+  - name : deploy
+    image: sinlead/drone-kubectl
+    settings:
+      kubernetes_server:
+        from_secret: k8s_server
+      kubernetes_cert:
+        from_secret: k8s_cert
+      kubernetes_token:
+        from_secret: k8s_token
+      commands:
+        - kubectl create -f droneex-k8.yaml
