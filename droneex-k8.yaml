@@ -13,7 +13,7 @@ spec:
     spec:
       containers:
         - name: droneex
-          image: sankar31/droneex:latest
+          image: sankar31/droneex:2.0
           imagePullPolicy: "Always"
           ports:
             - containerPort: 8080
