@@ -3,7 +3,7 @@ kind: Deployment
 metadata:
   name: droneex
 spec:
-  replicas: 2
+  replicas: 3
   strategy:
     type: RollingUpdate
     rollingUpdate:
@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: droneex
-          image: sankar31/droneex:2.1
+          image: sankar31/droneex:$DRONE_BUILD_NUMBER
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
