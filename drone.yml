@@ -1,13 +1,11 @@
 kind: pipeline
 type: kubernetes
 name: default
-
 steps:
   - name: build
     image: sankar31/baseimg:1.0
     commands:
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  
   - name : buildimage
     image: plugins/docker
     use_cache: true
@@ -17,7 +15,7 @@ steps:
       password: 123sinku
       repo: sankar31/droneex
       dockerfile: Dockerfile
-      tags: 2.1
+      tags: $DRONE_BUILD_NUMBER
   - name : deploy
     image: sinlead/drone-kubectl
     settings:
@@ -28,4 +26,4 @@ steps:
       kubernetes_token:
         from_secret: k8s_token
     commands:
-        - kubectl apply -f droneex-k8.yaml  --validate=false
+        - kubectl apply -f droneex-k8.yaml
