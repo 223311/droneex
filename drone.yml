@@ -5,6 +5,7 @@ steps:
   - name: build
     image: sankar31/baseimg:1.0
     commands:
+      - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' droneex-k8.yaml
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
   - name : buildimage
     image: plugins/docker
@@ -26,4 +27,4 @@ steps:
       kubernetes_token:
         from_secret: k8s_token
     commands:
-        - kubectl apply -f droneex-k8.yaml
+        - kubectl apply -f droneex-k8.yaml  --validate=false
