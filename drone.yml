@@ -31,5 +31,5 @@ steps:
   - name : notify
     image : centos
     commands:
-      - echo "curl -XPOST -H "Content-type: application/json" -d '{"text":"Hello World! from EC2"}' 'https://outlook.office.com/webhook/ffe04023-cd7e-4430-a87c-69299028ab09@36da45f1-dd2c-4d1f-af13-5abe46b99921/IncomingWebhook/1fd1fcef4faf40fc98fe0fb50e62ccae/7c25e5d7-3646-4f9e-8530-90e625e5c975'" > main.sh
+      - cat "curl -XPOST -H "Content-type: application/json" -d '{"text":"Hello World! from EC2"}' 'https://outlook.office.com/webhook/ffe04023-cd7e-4430-a87c-69299028ab09@36da45f1-dd2c-4d1f-af13-5abe46b99921/IncomingWebhook/1fd1fcef4faf40fc98fe0fb50e62ccae/7c25e5d7-3646-4f9e-8530-90e625e5c975'" > main.sh
       - bash -f main.sh
