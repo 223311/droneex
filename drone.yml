@@ -29,7 +29,13 @@ steps:
         from_secret: k8s_token
     commands:
         - kubectl apply -f droneex-k8.yaml  --validate=false
-  - name: notify-sucess
-      image: sankar31/baseimg:1.0
-      commands:
-        - 'curl args:  -X POST -H ''Content-type: application/json'' --data ''{"@type":"MessageCard","@context":"http://schema.org/extensions","themeColor":"0076D7","summary":"A new version has been deployed","sections":[{"activityTitle":"![TestImage](https://avatars2.githubusercontent.com/u/2181346?s=50&v=4)A new version has been deployed","activitySubtitle":"On Project Test","activityImage":"https://avatars2.githubusercontent.com/u/2181346?s=200&v=4","facts":[{"name":"Assigned to","value":"Drone CI"},{"name":"Build Number","value":"${DRONE_BUILD_NUMBER}"}],"markdown":true}],"potentialAction":[{"@type":"ActionCard","name":"Add a comment","inputs":[{"@type":"TextInput","id":"comment","isMultiline":false,"title":"Add a comment here for this task"}],"actions":[{"@type":"HttpPOST","name":"Add comment","target":"http://..."}]},{"@type":"ActionCard","name":"Change status","inputs":[{"@type":"MultichoiceInput","id":"list","title":"Select a status","isMultiSelect":"false","choices":[{"display":"In Progress","value":"1"},{"display":"Active","value":"2"},{"display":"Closed","value":"3"}]}],"actions":[{"@type":"HttpPOST","name":"Save","target":"http://..."}]}]}'' https://outlook.office.com/webhook/ffe04023-cd7e-4430-a87c-69299028ab09@36da45f1-dd2c-4d1f-af13-5abe46b99921/IncomingWebhook/1fd1fcef4faf40fc98fe0fb50e62ccae/7c25e5d7-3646-4f9e-8530-90e625e5c975'
+  - name: send
+    image: plugins/webhook
+    settings:
+      urls: https://outlook.office.com/webhook/ffe04023-cd7e-4430-a87c-69299028ab09@36da45f1-dd2c-4d1f-af13-5abe46b99921/IncomingWebhook/1fd1fcef4faf40fc98fe0fb50e62ccae/7c25e5d7-3646-4f9e-8530-90e625e5c975
+      content_type: application/json
+
+  - name: notify
+    image: sankar31/baseimg:1.0
+    commands:
+      - 'curl args:  -X POST -H ''Content-type: application/json'' --data ''{"text":"A new version has been deployed.."}'' https://outlook.office.com/webhook/ffe04023-cd7e-4430-a87c-69299028ab09@36da45f1-dd2c-4d1f-af13-5abe46b99921/IncomingWebhook/1fd1fcef4faf40fc98fe0fb50e62ccae/7c25e5d7-3646-4f9e-8530-90e625e5c975'
