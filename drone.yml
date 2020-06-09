@@ -33,3 +33,7 @@ steps:
     image: sankar31/baseimg:1.0
     commands:
       - 'curl args:  -X POST -H ''Content-type: application/json'' --data ''{"text":"A new version has been deployed.."}'' https://outlook.office.com/webhook/ffe04023-cd7e-4430-a87c-69299028ab09@36da45f1-dd2c-4d1f-af13-5abe46b99921/IncomingWebhook/1fd1fcef4faf40fc98fe0fb50e62ccae/7c25e5d7-3646-4f9e-8530-90e625e5c975'
+  - name: notifyfail
+     image: sankar31/baseimg:1.0
+     commands:
+       - 'curl args:  -X POST -H ''Content-type: application/json'' --data ''{"text":"A new version has been deployed.."}'' https://outlook.office.com/webhook/ffe04023-cd7e-4430-a87c-69299028ab09@36da45f1-dd2c-4d1f-af13-5abe46b99921/IncomingWebhook/1fd1fcef4faf40fc98fe0fb50e62ccae/7c25e5d7-3646-4f9e-8530-90e625e5c975'
