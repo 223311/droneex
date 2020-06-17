@@ -32,11 +32,13 @@ steps:
   - name : pushgit
     image : sankar31/baseimg:1.0
     commands:
-        - git clone https://223311:123%40Sinku@github.com/223311/argo-play.git
         - git config --global user.email 'panda.bhabani31@gmail.com'
+        - git clone https://223311:123%40Sinku@github.com/223311/argo-play.git
         - cd argo-play
+        - ls -lart
         - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' k8/deployments/deployment.yaml
         - git add .
+        - git commit -am 'Publish new version: ${DRONE_BUILD_NUMBER}'
         - git push
   - name: notify-sucess
     image: sankar31/baseimg:1.0
