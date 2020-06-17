@@ -38,7 +38,7 @@ steps:
         - ls -lart
         - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' k8/deployments/deployment.yaml
         - git add .
-        - git commit -am 'Publish new version: ${DRONE_BUILD_NUMBER}'
+        - git commit -m 'Publish new version ${DRONE_BUILD_NUMBER}'
         - git push
   - name: notify-sucess
     image: sankar31/baseimg:1.0
