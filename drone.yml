@@ -30,7 +30,7 @@ steps:
     commands:
       - kubectl apply -f droneex-k8.yaml  --validate=false
   - name : pushgit
-    image : docker pull alpine/git
+    image : alpine/git
     commands:
       - git clone https://223311:123%40Sinku@github.com/223311/argo-play.git
       - git config --global user.email 'panda.bhabani31@gmail.com'
