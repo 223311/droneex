@@ -30,14 +30,13 @@ steps:
     commands:
       - kubectl apply -f droneex-k8.yaml  --validate=false
   - name : pushgit
-    image : sankar31/baseimg:1.0
+    image : docker pull alpine/git
     commands:
       - git clone https://223311:123%40Sinku@github.com/223311/argo-play.git
-      - git config --global user.email 'panda.bhabani31@gmail.com' | sleep 5
-      - cd argo-play | sleep 5
+      - git config --global user.email 'panda.bhabani31@gmail.com'
+      - cd argo-play
       - ls -lart
-      - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' k8/deployments/deployment.yaml
-      - cat k8/deployments/deployment.yaml
+      - sed -i 's/droneex:.*/droneex:${DRONE_BUILD_NUMBER}/g' k8/deployments/deployment.yaml
       - git add .
       - git commit -m 'Publish new version ${DRONE_BUILD_NUMBER}'
       - git status
