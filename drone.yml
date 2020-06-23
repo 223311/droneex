@@ -1,6 +1,7 @@
 kind: pipeline
 type: kubernetes
 name: default
+
 steps:
   - name: build
     image: sankar31/baseimg:1.0
@@ -28,6 +29,18 @@ steps:
         from_secret: k8s_token
     commands:
       - kubectl apply -f droneex-k8.yaml  --validate=false
+  - name : pushgit
+    image : sankar31/baseimg:1.0
+    commands:
+      - git config --global user.email 'panda.bhabani31@gmail.com'
+      - git clone https://223311:123%40Sinku@github.com/223311/argo-play.git
+      - cd argo-play
+      - ls -lart
+      - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' k8/deployments/deployment.yaml
+      - git status | sleep 5
+      - git add .
+      - git commit -m 'Publish new version ${DRONE_BUILD_NUMBER}'
+      - git push
   - name: notify-sucess
     image: sankar31/baseimg:1.0
     commands:
