@@ -7,7 +7,7 @@ steps:
     commands:
       - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' droneex-k8.yaml
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - name: publish  
+  - name: publish
     image: plugins/ecr
     settings:
       access_key:
@@ -15,11 +15,9 @@ steps:
       secret_key:
           from_secret: secret_key
     repo: droneci
-    registry: 751087521896.dkr.ecr.us-west-2.amazonaws.com/droneci
+    registry: 751087521896.dkr.ecr.us-west-2.amazonaws.com
     region: us-west-2
     dockerfile: Dockerfile
-    tags:
-      - latest
   - name: notify-sucess
     image: sankar31/baseimg:1.0
     commands:
