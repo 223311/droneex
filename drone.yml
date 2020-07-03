@@ -10,8 +10,10 @@ steps:
   - name: publish  
     image: plugins/ecr
     settings:
-      repo: 751087521896.dkr.ecr.us-west-2.amazonaws.com/droneci
-      registry: 751087521896.dkr.ecr.us-west-2.amazonaws.com
+      repo:
+         from_secret: repo
+      registry:
+         from_secret: registry
       dockerfile: Dockerfile
       tags: ${DRONE_BUILD_NUMBER}
       region: us-west-2
