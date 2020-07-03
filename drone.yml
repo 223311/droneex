@@ -7,39 +7,18 @@ steps:
     commands:
       - sed -i 's/DRONE_BUILD_NUMBER/${DRONE_BUILD_NUMBER}/g' droneex-k8.yaml
       - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
-  - name : buildimage
-    image: plugins/docker
-    use_cache: true
-    privileged: true
+  - name: publish  
+    image: plugins/ecr
     settings:
-      username: sankar31
-      password: 123sinku
-      repo: sankar31/droneex
-      dockerfile: Dockerfile
-      tags: ${DRONE_BUILD_NUMBER}
-  - name : deploy
-    image: sinlead/drone-kubectl
-    settings:
-      kubernetes_server:
-        from_secret: k8s_server
-      kubernetes_cert:
-        from_secret: k8s_cert
-      kubernetes_token:
-        from_secret: k8s_token
-    commands:
-      - kubectl apply -f droneex-k8.yaml  --validate=false
-  - name : pushgit
-    image : alpine/git
-    commands:
-      - git clone https://223311:123%40Sinku@github.com/223311/argo-play.git
-      - git config --global user.email 'panda.bhabani31@gmail.com'
-      - cd argo-play
-      - ls -lart
-      - sed -i 's/droneex:.*/droneex:${DRONE_BUILD_NUMBER}/g' k8/deployments/deployment.yaml
-      - git add .
-      - git commit -m 'Publish new version ${DRONE_BUILD_NUMBER}'
-      - git status
-      - git push | sleep 5
+      access_key:
+          from_secret: access_key
+      secret_key:
+          from_secret: secret_key
+    repo: droneci
+    registry: 751087521896.dkr.ecr.us-west-2.amazonaws.com
+    region: us-west-2
+    dockerfile: Dockerfile
+    tags: ${DRONE_BUILD_NUMBER}
   - name: notify-sucess
     image: sankar31/baseimg:1.0
     commands:
