@@ -18,7 +18,8 @@ steps:
     registry: 751087521896.dkr.ecr.us-west-2.amazonaws.com
     region: us-west-2
     dockerfile: Dockerfile
-    tags: ${DRONE_BUILD_NUMBER}
+    tags:
+      - latest
   - name: notify-sucess
     image: sankar31/baseimg:1.0
     commands:
