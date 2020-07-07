@@ -14,9 +14,11 @@ spec:
       labels:
         app: droneex
     spec:
+      imagePullSecrets:
+        - name: droneci-key
       containers:
         - name: droneex
-          image: sankar31/droneex:DRONE_BUILD_NUMBER
+          image: 751087521896.dkr.ecr.us-west-2.amazonaws.com/droneci:DRONE_BUILD_NUMBER
           imagePullPolicy: Always
           ports:
             - containerPort: 8080
