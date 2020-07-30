@@ -4,6 +4,8 @@ name: default
 trigger:
   branch:
     - master
+    - develop
+    - test
 steps:
   - name: build
     image: sankar31/baseimg:1.0
