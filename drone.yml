@@ -2,8 +2,7 @@ kind: pipeline
 type: kubernetes
 name: default
 when:
-  branch:
-    - master
+  branch: master
 steps:
   - name: build
     image: sankar31/baseimg:1.0
